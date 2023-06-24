@@ -28,6 +28,9 @@
                                         <a class="nav-link" href="<?php echo base_url('persyaratan') ?>">Persyaratan</span></a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="<?= base_url('prodi') ?>">Program Studi</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="<?php echo base_url('pendaftaran') ?>">Pendaftaran akun</span></a>
                                     </li>
                                     <li class="nav-item">

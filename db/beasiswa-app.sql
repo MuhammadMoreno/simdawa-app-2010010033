@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jun 2023 pada 17.07
+-- Waktu pembuatan: 24 Jun 2023 pada 11.52
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -52,7 +52,8 @@ CREATE TABLE `jenis_beasiswa` (
 --
 
 INSERT INTO `jenis_beasiswa` (`id`, `nama_jenis`, `keterangan`) VALUES
-(1, 'Bidikmisi', 'testetstets');
+(1, 'Bidikmisi berprestasi', 'walau habis terang'),
+(4, 'Prestasi Olahraga', 'juara 1');
 
 -- --------------------------------------------------------
 
@@ -102,25 +103,32 @@ CREATE TABLE `pengguna` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `persayaratan_beasiswa`
---
-
-CREATE TABLE `persayaratan_beasiswa` (
-  `id` int(11) NOT NULL,
-  `beasiswa_id` int(11) DEFAULT NULL,
-  `persayaratan_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `persyaratan`
 --
 
 CREATE TABLE `persyaratan` (
   `id` int(11) NOT NULL,
-  `nama_persayaratan` varchar(100) DEFAULT NULL,
+  `nama_persyaratan` varchar(100) DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `persyaratan`
+--
+
+INSERT INTO `persyaratan` (`id`, `nama_persyaratan`, `keterangan`) VALUES
+(1, 'Bidikmisi ', 'tes');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `persyaratan_beasiswa`
+--
+
+CREATE TABLE `persyaratan_beasiswa` (
+  `id` int(11) NOT NULL,
+  `beasiswa_id` int(11) DEFAULT NULL,
+  `persyaratan_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -132,7 +140,7 @@ CREATE TABLE `persyaratan` (
 CREATE TABLE `persyaratan_pengajuan` (
   `id` int(11) NOT NULL,
   `pengajuan_id` int(11) DEFAULT NULL,
-  `persayaratan_id` int(11) DEFAULT NULL,
+  `persyaratan_id` int(11) DEFAULT NULL,
   `tanggal_upload` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `nama_file` varchar(255) DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL
@@ -148,6 +156,13 @@ CREATE TABLE `prodi` (
   `id` int(11) NOT NULL,
   `nama_prodi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `prodi`
+--
+
+INSERT INTO `prodi` (`id`, `nama_prodi`) VALUES
+(4, 'Teknik Informatika');
 
 --
 -- Indexes for dumped tables
@@ -184,15 +199,15 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `persayaratan_beasiswa`
---
-ALTER TABLE `persayaratan_beasiswa`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indeks untuk tabel `persyaratan`
 --
 ALTER TABLE `persyaratan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `persyaratan_beasiswa`
+--
+ALTER TABLE `persyaratan_beasiswa`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -221,7 +236,7 @@ ALTER TABLE `beasiswa`
 -- AUTO_INCREMENT untuk tabel `jenis_beasiswa`
 --
 ALTER TABLE `jenis_beasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pendaftaran_pengguna`
@@ -236,15 +251,15 @@ ALTER TABLE `pengguna`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `persayaratan_beasiswa`
---
-ALTER TABLE `persayaratan_beasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT untuk tabel `persyaratan`
 --
 ALTER TABLE `persyaratan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `persyaratan_beasiswa`
+--
+ALTER TABLE `persyaratan_beasiswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -257,7 +272,7 @@ ALTER TABLE `persyaratan_pengajuan`
 -- AUTO_INCREMENT untuk tabel `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
