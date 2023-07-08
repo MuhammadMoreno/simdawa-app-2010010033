@@ -22,6 +22,13 @@ class PersyaratanModel extends CI_Model
         //nama_jenis sebelah kiri, sesuaikan dengan nama kolom di tabel
         //nama_jenis sebelah kanan, seasuailan dengan name di form yaitu(jenis_create.php baris 29)
         $this->db->insert($this->tabel, $data);
+        if ($this->db->affected_rows() > 0) { //cek proses perubahan data pada tabel, apabila lebih dari 0 maka berhasil
+            $this->session->set_flashdata('pesan', "Data Persyaratan berhasil ditambahkan");
+            $this->session->set_flashdata('status', true);
+        } else {
+            $this->session->set_flashdata('pesan', "Data Persyaratan gagal ditambahkan");
+            $this->session->set_flashdata('status', false);
+        }
     }
 
     //function dengan 1 parameter. $id nilainya dikirimkan oleh controller
@@ -45,6 +52,13 @@ class PersyaratanModel extends CI_Model
         $this->db->update($this->tabel, $data);
         /* proses update hampir sama seperti insert, bedanya, ada tambahan where(baris 43)
         untuk menentukan data mana yang akan diperbaharui */
+        if ($this->db->affected_rows() > 0) { //cek proses perubahan data pada tabel, apabila lebih dari 0 maka berhasil
+            $this->session->set_flashdata('pesan', "Data Persyaratan berhasil diubah");
+            $this->session->set_flashdata('status', true);
+        } else {
+            $this->session->set_flashdata('pesan', "Data Persyaratan gagal diubah");
+            $this->session->set_flashdata('status', false);
+        }
     }
 
     public function delete_persyaratan($id)
@@ -53,5 +67,12 @@ class PersyaratanModel extends CI_Model
         $this->db->delete($this->tabel);
         //sebelum dilakukan hapus, tambahkan where dulu untuk menentukan data mana yang dihapus
         //untuk proses hapus gunakan fungsi delete(namatabel)
+        if ($this->db->affected_rows() > 0) { //cek proses perubahan data pada tabel, apabila lebih dari 0 maka berhasil
+            $this->session->set_flashdata('pesan', "Data Persyaratan berhasil dihapus");
+            $this->session->set_flashdata('status', true);
+        } else {
+            $this->session->set_flashdata('pesan', "Data Persyaratan gagal dihapus");
+            $this->session->set_flashdata('status', false);
+        }
     }
 }

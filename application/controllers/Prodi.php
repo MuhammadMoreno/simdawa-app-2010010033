@@ -8,6 +8,15 @@ class Prodi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('ProdiModel');
+        $this->load->library('pdf'); //meload file pdf yang ada di folder libraries
+        //meload 2 buah model, JenisModel akan digunakan untuk mengambil data jenis beasiswa
+    }
+
+    //function cetak, digunakan untuk menjalankan report data Prodi
+    public function cetak()
+    {
+        $data['prodi'] = $this->ProdiModel->get_prodi();
+        $this->load->view('prodi/prodi_print', $data);
     }
 
     public function index()
