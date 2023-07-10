@@ -26,8 +26,11 @@
                 <div class="card">
                     <div class="card-header">
                         Data Beasiswa
-                        <a href="<?= base_url('beasiswa/tambah') ?>" class="btn btn-sm btn-success float-right"><i class="fas fa-plus">Tambah Data</i></a>
-                        <a href="<?= base_url('beasiswa/cetak') ?>" target="_blank" class="btn btn-sm btn-info mr-1 float-right"><i class="fas fa-print">Cetak Data</i></a>
+                        <!-- pembatasan tombol cetak dan tambah pada akun peran USER -->
+                        <?php if ($this->session->userdata('peran') != 'USER') : ?>
+                            <a href="<?= base_url('beasiswa/tambah') ?>" class="btn btn-sm btn-success float-right"><i class="fas fa-plus">Tambah Data</i></a>
+                            <a href="<?= base_url('beasiswa/cetak') ?>" target="_blank" class="btn btn-sm btn-info mr-1 float-right"><i class="fas fa-print">Cetak Data</i></a>
+                        <?php endif ?>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered" id="mytabel">
@@ -39,7 +42,9 @@
                                     <th>Tanggal Selesai</th>
                                     <th>Nama Jenis Beasiswa</th>
                                     <th>Keterangan</th>
-                                    <th>Aksi</th>
+                                    <?php if ($this->session->userdata('peran') != 'USER') : ?>
+                                        <th>Aksi</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
